@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - mern-ec2-docker
-name: Test Self-Hosted Runner
 
 jobs:
   test-runner:
@@ -13,8 +12,6 @@ jobs:
       - name: Print runner info
         run: echo "Running on self-hosted runner"
 
-
-jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -40,12 +37,10 @@ jobs:
 
       - name: Publish Image to Docker Hub
         run: docker push integrationninjas/nodejs-app:latest
-        
 
- 
   deploy:
     needs: build
-    runs-on: [self-hosted]
+    runs-on: self-hosted
     steps:
       - name: Pull image from Docker Hub
         run: docker pull integrationninjas/nodejs-app:latest
