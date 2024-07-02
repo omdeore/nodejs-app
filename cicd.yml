@@ -45,5 +45,5 @@ jobs:
             docker rm -f nodejs-app-container
           fi
 
-      - name: Run Docker Container
+      - name: Run Docker Containerr
         run: docker run -d -p 4000:4000 --name nodejs-app-container -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} integrationninjas/nodejs-app:latest
