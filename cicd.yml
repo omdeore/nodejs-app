@@ -41,6 +41,11 @@ jobs:
       - name: Publish Image to Docker Hub
         run: docker push integrationninjas/nodejs-app:latest
 
+on:
+  push:
+    branches:
+      - mern-ec2-docker
+jobs:
   deploy:
     needs: build
     runs-on: self-hosted
