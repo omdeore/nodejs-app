@@ -15,6 +15,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Example Step Using MFA
+        run: echo "Using MFA: ${{ secrets.MFA }}"
+
       - name: Checkout Source
         uses: actions/checkout@v4
 
@@ -42,6 +45,8 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
+      - name: Example Step Using MFA
+        run: echo "Using MFA: ${{ secrets.MFA }}"
       - name: Pull image from Docker Hub
         run: docker pull integrationninjas/nodejs-app:latest
 
