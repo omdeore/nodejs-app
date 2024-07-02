@@ -15,16 +15,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Example Step Using MFA
-        run: echo "Using MFA: ${{ secrets.MFA }}"
-
       - name: Checkout Source
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3  # Update to v3 for Node.js 20
         with:
-          node-version: '14'
+          node-version: '20'  # Specify Node.js version 20
 
       - name: Install dependencies
         run: npm install
@@ -41,17 +38,10 @@ jobs:
       - name: Publish Image to Docker Hub
         run: docker push integrationninjas/nodejs-app:latest
 
-on:
-  push:
-    branches:
-      - mern-ec2-docker
-jobs:
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
-      - name: Example Step Using MFA
-        run: echo "Using MFA: ${{ secrets.MFA }}"
       - name: Pull image from Docker Hub
         run: docker pull integrationninjas/nodejs-app:latest
 
